@@ -5,6 +5,7 @@ class GrassEater extends LivingCreature{
     }
 
     chooseCell(ch) {
+        this.getNewCoordinates()
         return super.chooseCell(ch);
     }
     getNewCoordinates() {
