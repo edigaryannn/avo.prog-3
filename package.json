@@ -18,7 +18,7 @@
   "homepage": "https://github.com/edigaryannn/avo.prog-3#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.6.0"
+    "socket.io": "^4.6.1"
   },
   "directories": {
     "test": "test"

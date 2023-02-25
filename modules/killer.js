@@ -1,8 +1,9 @@
 //Predtor Killer
 //snvum e predator nerov, kyanqi tevoxutyun@ shat karch e
+let LivingCreature = require('./living')
 
 
-class PredKiller extends LivingCreature{
+module.exports = class PredKiller extends LivingCreature{
     constructor(x,y){
         super(x,y)
         this.energy = 2;

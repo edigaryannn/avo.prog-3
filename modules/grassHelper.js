@@ -1,6 +1,8 @@
 //`grassHelper` object@ snvume bolor objectnerov baci `grass` ic
 //erb `energy` in havasarvume 0 i ayn veracvum e `grassi`
-class GrassHelper extends LivingCreature{
+let LivingCreature = require('./living')
+
+module.exports = class GrassHelper extends LivingCreature{
     constructor(x,y){
         super(x,y)
         this.energy = 10;
