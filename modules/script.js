@@ -22,7 +22,6 @@ socket.on("send grassHelper", function (data) {
 
 var side = 70;
 
-console.log(matrix);
 
 
 function setup() {
@@ -63,5 +62,3 @@ function drawing(matrix) {
         }
     }
 }
-
-drawing()

@@ -35,9 +35,9 @@ function matrixGen() {
     }
 }
 
-matrixGen();
+// matrix = matrixGen();
+matrixGen()
 
-console.log(matrix);
 function createObjects() {
 
     for (var y = 0; y < matrix.length; ++y) {
@@ -64,47 +64,50 @@ function createObjects() {
             }
         } console.log();
     }
+    io.sockets.emit("send matrix", matrix)
 }
 
+console.log(grassArr);
 
-createObjects(matrix)
+function game() {
+    for (var i in grassArr) {
+        grassArr[i].mul()
+    }
 
+    for (var i in grassEater) {
+        grassEater[i].eat();
 
+    }
+    for (var i in grassEater) {
+        grassEater[i].mul()
+    }
 
+    for (var i in predatorArr) {
+        predatorArr[i].eat();
+
+    }
+    for (var i in predatorArr) {
+        predatorArr[i].mul()
+    }
+    for (var i in killerArr) {
+        killerArr[i].eat()
+    }
+
+    for (var i in grassHelper) {
+        grassHelper[i].eat()
+    }
+}
+
+setInterval(game, 200)
 
 io.on('connection', function (socket) {
-    
-    socket.emit("send matrix", matrix)
+    createObjects();
+    // socket.emit("send matrix", matrix)
     socket.emit("send grassArr", grassArr)
     socket.emit("send grassEater", grassEater)
     socket.emit("send predatorArr", predatorArr)
     socket.emit("send killerArr", killerArr)
     socket.emit("send grassHelper", grassHelper)
-
-    function game() {
-        for (var i in grassArr) {
-            grassArr[i].mul()
-        }
-
-        for (var i in grassEater) {
-            grassEater[i].eat()
-            grassEater[i].mul()
-        }
-
-        for (var i in predatorArr) {
-            predatorArr[i].eat()
-            predatorArr[i].mul()
-        }
-
-        for (var i in killerArr) {
-            killerArr[i].eat()
-        }
-
-        for (var i in grassHelper) {
-            grassHelper[i].eat()
-        }
-    }
-    setInterval(game,2000)
 });
 
 

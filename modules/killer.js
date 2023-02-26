@@ -9,6 +9,14 @@ module.exports = class PredKiller extends LivingCreature{
         this.energy = 2;
         this.directions = [];
     }
+
+    random(ch){
+        let found = this.chooseCell(ch);
+        let result = Math.floor(Math.random()*found.length)
+        return found[result];
+    }
+
+
     chooseCell(ch) {
         return super.chooseCell(ch);
     }
@@ -27,8 +35,7 @@ module.exports = class PredKiller extends LivingCreature{
     move() {
         if (this.energy > 0) {
             this.energy--
-            let emptyCells = this.chooseCell(0)
-            var newCell = random(emptyCells);
+            var newCell = this.random(0);
             if (newCell) {
                 var newX = newCell[0]
                 var newY = newCell[1]
@@ -46,8 +53,7 @@ module.exports = class PredKiller extends LivingCreature{
 
     eat(){
         this.getNewCoordinates();
-        let eaterCells = this.chooseCell(3)
-        var newCell = random(eaterCells);
+        var newCell = this.random(3);
 
         if (newCell) {
             this.energy = 3;
