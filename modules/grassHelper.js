@@ -51,7 +51,7 @@ module.exports = class GrassHelper extends LivingCreature{
 
     eat(){
         this.getNewCoordinates();
-        let eaterCells = this.chooseCell(2 && 3 && 4)
+        let eaterCells = this.chooseCell(3 && 4)
         var newCell = this.random(eaterCells);
 
         if (newCell) {
@@ -65,12 +65,6 @@ module.exports = class GrassHelper extends LivingCreature{
             for (var i in predatorArr) {
                 if (newX == predatorArr[i].x && newY == predatorArr[i].y) {
                     predatorArr.splice(i, 1);
-                    break;
-                }
-            }
-            for (var i in grassEater) {
-                if (newX == grassEater[i].x && newY == grassEater[i].y) {
-                    grassEater.splice(i, 1);
                     break;
                 }
             }

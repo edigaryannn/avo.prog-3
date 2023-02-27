@@ -1,3 +1,9 @@
+Grass = require('./modules/grass')
+GrassEater = require('./modules/grassEater')
+GrassHelper = require('./modules/grassHelper')
+PredKiller = require('./modules/killer')
+Predator = require('./modules/Predator')
+
 var express = require('express');
 var app = express();
 var server = require('http').createServer(app);
@@ -9,7 +15,9 @@ app.get('/', function (req, res) {
 });
 server.listen(3000, function () {
     console.log("Example is running on port 3000");
-});;
+});
+
+
 
 
 matrix = [];
@@ -19,16 +27,12 @@ predatorArr = [];
 killerArr = [];
 grassHelper = [];
 //my characters   
-Grass = require('./modules/grass')
-GrassEater = require('./modules/grassEater')
-GrassHelper = require('./modules/grassHelper')
-PredKiller = require('./modules/killer')
-Predator = require('./modules/Predator')
+
 
 function matrixGen() {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 70; i++) {
         matrix[i] = []
-        for (let l = 0; l < 10; l++) {
+        for (let l = 0; l < 70; l++) {
             let rand = Math.floor((Math.random() * 6))
             matrix[i].push(rand)
         }
@@ -62,12 +66,11 @@ function createObjects() {
                 var grshelp = new GrassHelper(x, y, 1);
                 grassHelper.push(grshelp);
             }
-        } console.log();
+        } 
     }
-    io.sockets.emit("send matrix", matrix)
+    // io.sockets.emit("send matrix", matrix)
 }
 
-console.log(grassArr);
 
 function game() {
     for (var i in grassArr) {
@@ -96,19 +99,19 @@ function game() {
     for (var i in grassHelper) {
         grassHelper[i].eat()
     }
+    io.sockets.emit("send matrix", matrix);
 }
 
 setInterval(game, 200)
 
+
 io.on('connection', function (socket) {
     createObjects();
     // socket.emit("send matrix", matrix)
-    socket.emit("send grassArr", grassArr)
-    socket.emit("send grassEater", grassEater)
-    socket.emit("send predatorArr", predatorArr)
-    socket.emit("send killerArr", killerArr)
-    socket.emit("send grassHelper", grassHelper)
+    // socket.emit("send grassArr", grassArr)
+    // socket.emit("send grassEater", grassEater)
+    // socket.emit("send predatorArr", predatorArr)
+    // socket.emit("send killerArr", killerArr)
+    // socket.emit("send grassHelper", grassHelper)
 });
-
-
 
