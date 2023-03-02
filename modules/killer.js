@@ -6,7 +6,7 @@ let LivingCreature = require('./living')
 module.exports = class PredKiller extends LivingCreature{
     constructor(x,y){
         super(x,y)
-        this.energy = 2;
+        this.energy = 4;
         this.directions = [];
     }
 

@@ -1,6 +1,7 @@
 //`grassHelper` object@ snvume bolor objectnerov baci `grass` ic
 //erb `energy` in havasarvume 0 i ayn veracvum e `grassi`
 let LivingCreature = require('./living')
+const Grass = require('./grass')
 
 module.exports = class GrassHelper extends LivingCreature{
     constructor(x,y){
@@ -11,7 +12,7 @@ module.exports = class GrassHelper extends LivingCreature{
 
     random(ch){
         let found = this.chooseCell(ch);
-        let result = Math.floor(Math.random()*found.length)
+        let result = Math.round(Math.random()*found.length)
         return found[result];
     }
 
@@ -93,4 +94,13 @@ module.exports = class GrassHelper extends LivingCreature{
                 break;
         }
     }
+    // die() {
+    //     matrix[this.y][this.x] = 0;
+    //     for (var i in grassHelper) {
+    //         if (this.x == grassHelper[i].x && this.y == grassHelper[i].y)
+    //             grassHelper.splice(i, 1);
+    //         break;
+
+    //     }
+    // }
 }

@@ -6,7 +6,7 @@ module.exports = class Grass extends LivingCreature{
     }
     random(){
         let found = this.chooseCell(0);
-        let result = Math.floor(Math.random()*found.length)
+        let result = Math.round(Math.random()*found.length)
         return found[result];
     }
 
@@ -14,7 +14,7 @@ module.exports = class Grass extends LivingCreature{
         this.multiply++;
         var newCell = this.random(0);
         if(matrix[this.y][this.x] == 1){
-            if (this.multiply >= 8 && newCell) {
+            if (this.multiply >= 5 && newCell) {
             var newGrass = new Grass(newCell[0], newCell[1], this.index);
             grassArr.push(newGrass);
             matrix[newCell[1]][newCell[0]] = 1;
